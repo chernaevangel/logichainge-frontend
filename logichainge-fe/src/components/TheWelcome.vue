@@ -5,11 +5,30 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+
+      new Vue({
+        el: '#app',
+        data () {
+          return {
+            info: null
+          }
+        },
+        mounted () {
+          axios
+            .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+            .then(response => (this.info = response))
+        }
+      })
 </script>
 
 <template>
   <div>
-    <WelcomeItem>
+
+    This is home page!
+
+    
+
+    <!-- <WelcomeItem>
       <template #icon>
         <DocumentationIcon />
       </template>
@@ -81,6 +100,6 @@ import SupportIcon from './icons/IconSupport.vue'
       As an independent project, Vue relies on community backing for its sustainability. You can
       help us by
       <a target="_blank" href="https://vuejs.org/sponsor/">becoming a sponsor</a>.
-    </WelcomeItem>
+    </WelcomeItem> -->
   </div>
 </template>
