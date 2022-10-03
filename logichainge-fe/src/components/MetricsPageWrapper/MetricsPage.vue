@@ -20,15 +20,15 @@
 
                     </div>
                 </div>
-
+        
                 <div id="metrics-content-wrapper">
-                            <ul v-if="posts && posts.length">
+                            <!-- <ul v-if="posts && posts.length">
                                 <li v-for="post of posts">
                                     <p>{{post.revenue}}</p>
                                 
                                 </li>
-                            </ul>
-                    loaded content
+                            </ul> -->
+                   <PlatformMetricsContent/>
                             <!-- <ul v-if="errors && errors.length">
                                 <li v-for="error of errors">
                                     {{error.message}}
@@ -45,29 +45,35 @@
   
   <script>
     import axios from "axios";
+    import PlatformMetricsContent from "../PlatformMetricsContent/PlatformMetricsContent.vue";
   
     export default {
-        data() {
-            return {
-                posts: [],
-                errors: [],
-            };
-        },
-  
-        // Pulls posts when the component is created.
-        created() {
-            axios
-                .get(`http://127.0.0.1:8000/managementMetrics`)
-                .then((response) => {
-                    // JSON responses are automatically parsed.
-                    this.posts = response.data;
-                    // console.log(response.data)
-                })
-                .catch((e) => {
-                    this.errors.push(e);
-                });
-        }
-    };
+    data() {
+        return {
+            posts: [],
+            errors: [],
+        };
+    },
+    // Pulls posts when the component is created.
+    created() {
+        // axios
+        //     .get(`http://127.0.0.1:8000/managementMetrics`)
+        //     .then((response) => {
+        //     // JSON responses are automatically parsed.
+        //     this.posts = response.data;
+        //     // console.log(response.data)
+        // })
+        //     .catch((e) => {
+        //     this.errors.push(e);
+        // });
+    },
+    components: { PlatformMetricsContent }
+};
+
+    components : {
+        PlatformMetricsContent
+    }
+
   </script>
   
   <style scoped>
@@ -186,6 +192,7 @@
     #metrics-content-wrapper{
         height: 100%;
         width: 100%;
+        display: flex;
         background-color: rgb(216, 216, 216);
     }
 
