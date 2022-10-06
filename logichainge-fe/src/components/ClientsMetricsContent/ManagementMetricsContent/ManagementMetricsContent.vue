@@ -1,29 +1,29 @@
 <template>
-    <div id="client-metrics-secondary-content">
-        <div id="client-metrics-secondary-content-row">
-                    <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
-                                Active Carriers
+    <div id="client-metrics-initial-content">
+        <div id="client-metrics-initial-content-row">
+                    <div id="client-metrics-initial-content-box-wrapper">
+                        <div id="client-metrics-initial-content-box">
+                            <div id="client-metrics-initial-content-box-title">
+                                Sales Revenue
                             </div>
-                            <div id="client-metrics-secondary-content-box-content">
+                            <div id="client-metrics-initial-content-box-content">
     
                                 <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.numActiveCarriers}}</p>
+                                    <p>{{post.managementMetics.salesRevenue}}</p>
                                 </div>
                           
                             </div>
                         </div>
                     </div>
-                    <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
-                                Top 10 Carriers
+                    <div id="client-metrics-initial-content-box-wrapper">
+                        <div id="client-metrics-initial-content-box">
+                            <div id="client-metrics-initial-content-box-title">
+                                Gross Profit Margin
                             </div>
-                            <div id="client-metrics-secondary-content-box-content">
+                            <div id="client-metrics-initial-content-box-content">
     
                                 <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.top10Carriers}}</p>
+                                    <p>{{post.managementMetics.grossProfitMargin}}</p>
                                 </div>
                           
                             </div>
@@ -31,30 +31,30 @@
                     </div>
 
         </div>
-                <div id="client-metrics-secondary-content-row">
-                    <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
+                <div id="client-metrics-initial-content-row">
+                    <div id="client-metrics-initial-content-box-wrapper">
+                        <div id="client-metrics-initial-content-box">
+                            <div id="client-metrics-initial-content-box-title">
                                 Retention Rate
                             </div>
-                            <div id="client-metrics-secondary-content-box-content">
+                            <div id="client-metrics-initial-content-box-content">
     
                                 <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.retentionRate}}</p>
+                                    <p>{{post.managementMetics.retentionRate}}</p>
                                 </div>
                           
                             </div>
                         </div>
                     </div>
-                    <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
+                    <div id="client-metrics-initial-content-box-wrapper">
+                        <div id="client-metrics-initial-content-box">
+                            <div id="client-metrics-initial-content-box-title">
                                 Carriers Satisfaction Rate
                             </div>
-                            <div id="client-metrics-secondary-content-box-content">
+                            <div id="client-metrics-initial-content-box-content">
     
                                 <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.satisfactionRate}}</p>
+                                    <p>{{post.managementMetics.carriersSatisfactionRate}}</p>
                                 </div>
                           
                             </div>
@@ -83,7 +83,7 @@ export default {
    // Pulls posts when the component is created.
    created() {
        axios
-           .get(`http://127.0.0.1:8000/platformMetrics`)
+           .get(`http://127.0.0.1:8000/clientMetrics`)
            .then((response) => {
            // JSON responses are automatically parsed.
            this.posts = response.data;
@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-    #client-metrics-secondary-content{
+    #client-metrics-initial-content{
         height: 88%;
         width: 100%;
         display: flex;
@@ -106,14 +106,14 @@ export default {
 
     }
 
-    #client-metrics-secondary-content-row{
+    #client-metrics-initial-content-row{
         height: 50%;
         width: 100%;
         display: flex;
        
     }
 
-    #client-metrics-secondary-content-box-wrapper{
+    #client-metrics-initial-content-box-wrapper{
         height: 100%;
         width: 50%;
         display: flex;
@@ -122,7 +122,7 @@ export default {
    
     }
 
-    #client-metrics-secondary-content-box{
+    #client-metrics-initial-content-box{
         height: 90%;
         width: 85%;
         border-radius: 10px;
@@ -131,7 +131,7 @@ export default {
         background-color: rgb(201, 191, 191);
     }
 
-    #client-metrics-secondary-content-box-title{
+    #client-metrics-initial-content-box-title{
         height: 15%;
         width: 95%;
         display: flex;
@@ -144,7 +144,7 @@ export default {
         color: grey;
     }
 
-    #client-metrics-secondary-content-box-content{
+    #client-metrics-initial-content-box-content{
         height: 85%;
         width: 100%;
     }

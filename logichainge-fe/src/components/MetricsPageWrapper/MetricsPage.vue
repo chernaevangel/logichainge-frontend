@@ -11,10 +11,15 @@
                 </div>
                 <div id="metrics-content-category-navigation-wrapper">
                     <div id="navigation-initial-wrapper">
-                        <div id="LG-metrics-box-wrapper">
+                        <div id="LG-metrics-box-wrapper"
+                        v-on:click="component = 'content-pm'"
+                      
+                        >
                                 LC Platform Metrics
                         </div>
-                        <div id="C-metrics-box-wrapper">
+                        <div id="C-metrics-box-wrapper"
+                        v-on:click="component = 'content-cl'"
+                        >
                                Client Metrics
                         </div>
 
@@ -28,7 +33,11 @@
                                 
                                 </li>
                             </ul> -->
-                   <PlatformMetricsContent/>
+                   <!-- <PlatformMetricsContent/> -->
+                   <!-- <ClientsMetricsContent/> -->
+                   <keep-alive>
+                   <component v-bind:is="component"></component>
+                   </keep-alive>
                             <!-- <ul v-if="errors && errors.length">
                                 <li v-for="error of errors">
                                     {{error.message}}
@@ -44,14 +53,14 @@
   </template>
   
   <script>
-    import axios from "axios";
     import PlatformMetricsContent from "../PlatformMetricsContent/PlatformMetricsContent.vue";
-  
+    import ClientsMetricsContent from "../ClientsMetricsContent/ClientsMetricsContent.vue";
+
     export default {
+
     data() {
         return {
-            posts: [],
-            errors: [],
+            component: 'content-pm'
         };
     },
     // Pulls posts when the component is created.
@@ -67,7 +76,10 @@
         //     this.errors.push(e);
         // });
     },
-    components: { PlatformMetricsContent }
+    components: { 
+        'content-pm' : PlatformMetricsContent,
+        'content-cl' : ClientsMetricsContent
+    }
 };
 
     components : {
@@ -88,7 +100,7 @@
         height: 100%;
         width: 5%;
         display: flex;
-        background-color: rgb(136, 133, 130);
+        background-color: #1e2b50 !important;
     }
 
     #navigation-initial-wrapper{

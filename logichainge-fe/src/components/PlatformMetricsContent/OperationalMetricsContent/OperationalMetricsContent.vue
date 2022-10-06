@@ -8,8 +8,25 @@
                     </div>
                     <div id="platform-metrics-initial-content-box-content">
                          
-                                <div v-for="post of posts">
+                                <div id="platform-metrics-initial-content-json"
+                                 v-for="post of posts">
                                     <p>{{post.operationalMetrics.utilizationRate}}</p>
+                                </div>
+
+                                <div id="platform-metrics-initial-content-graph">
+                                   <keep-alive>
+                                    <Bar
+                                            :chart-options="chartOptions"
+                                            :chart-data="chartData"
+                                            :chart-id="chartId"
+                                            :dataset-id-key="datasetIdKey"
+                                            :plugins="plugins"
+                                            :css-classes="cssClasses"
+                                            :styles="styles"
+                                            :width="width"
+                                            :height="height"
+                                        />
+                                    </keep-alive>
                                 </div>
                           
                     </div>
@@ -82,6 +99,7 @@
                         <div v-for="post of posts">
                             <p>{{post.operationalMetrics.numberCriticalIssues}}</p>
                         </div>
+                       
 
                     </div>
 
@@ -92,32 +110,77 @@
 </template>
 
 <script>
- import axios from "axios";
+    import axios from "axios";
+    import { Bar } from 'vue-chartjs/legacy'
 
- export default {
-    data() {
-        return {
-            posts: [],
-            errors: [],
-        };
-    },
-    // Pulls posts when the component is created.
-    created() {
-        axios
-            .get(`http://127.0.0.1:8000/platformMetrics`)
-            .then((response) => {
-            // JSON responses are automatically parsed.
-            this.posts = response.data;
-            // console.log(response.data)
-        })
-            .catch((e) => {
-            this.errors.push(e);
-        });
-    }
-};
+    import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
+    ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
     
-</script>
+    export default {
+        name: 'BarChart',
+            components: { Bar },
+            props: {
+                chartId: {
+                type: String,
+                default: 'bar-chart'
+                },
+                datasetIdKey: {
+                type: String,
+                default: 'label'
+                },
+                width: {
+                type: Number,
+                default: 440
+                },
+                height: {
+                type: Number,
+                default: 200
+                },
+                cssClasses: {
+                default: '',
+                type: String
+                },
+                styles: {
+                type: Object,
+                default: () => {}
+                },
+                plugins: {
+                type: Object,
+                default: () => {}
+                }
+            },
+       data() {
+           return {
+               posts: [],
+               errors: [],
+               chartData: {
+                    labels: [ '2020', '2021', '2022' ],
+                    datasets: [ {
+                        label : 'Utilization Rate',
+                        data: [36, 20, 12] } ]
+                },
+                chartOptions: {
+                    responsive: true
+                }
+           };
+       },
+       // Pulls posts when the component is created.
+       created() {
+           axios
+               .get(`http://127.0.0.1:8000/platformMetrics`)
+               .then((response) => {
+               // JSON responses are automatically parsed.
+               this.posts = response.data;
+               // console.log(response.data)
+           })
+               .catch((e) => {
+               this.errors.push(e);
+           });
+       }
+    };
+    
+    </script>
 
 
 
@@ -168,6 +231,24 @@
     #platform-metrics-initial-content-box-content{
         height: 85%;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #platform-metrics-initial-content-json{
+        height: 10%;
+        width: 100%;
+        font-size: 0.8vw;
+        display: flex;
+        
+    }
+
+    #platform-metrics-initial-content-graph{
+        height: 90%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
 </style>

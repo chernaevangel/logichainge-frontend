@@ -34,7 +34,7 @@ import HelloWorld from './components/HelloWorld.vue'
  }
 
  .wrapper{
-  background-color: bisque;
+  background-color: rgb(251, 251, 251);
  }
 
 
