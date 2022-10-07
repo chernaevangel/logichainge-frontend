@@ -2,108 +2,57 @@
     <div id="platform-metrics-initial-content">
         <div id="platform-metrics-initial-content-row">
            <div id="platform-metrics-initial-content-box-wrapper">
-                <div id="platform-metrics-initial-content-box">
-                    <div id="platform-metrics-initial-content-box-title">
-                        Utilization Rate
-                    </div>
-                    <div id="platform-metrics-initial-content-box-content">
-                         
-                                <div id="platform-metrics-initial-content-json"
-                                 v-for="post of posts">
-                                    <p>{{post.operationalMetrics.utilizationRate}}</p>
-                                </div>
+            <keep-alive>
+                <component :is="component" 
+                name="Utilization Rate"
+                :utilizationRate="posts"
+                />
 
-                                <div id="platform-metrics-initial-content-graph">
-                                   <keep-alive>
-                                    <Bar
-                                            :chart-options="chartOptions"
-                                            :chart-data="chartData"
-                                            :chart-id="chartId"
-                                            :dataset-id-key="datasetIdKey"
-                                            :plugins="plugins"
-                                            :css-classes="cssClasses"
-                                            :styles="styles"
-                                            :width="width"
-                                            :height="height"
-                                        />
-                                    </keep-alive>
-                                </div>
-                          
-                    </div>
-                </div>
-           
+        
+            </keep-alive>   
            </div>
            <div id="platform-metrics-initial-content-box-wrapper">
            
-                <div id="platform-metrics-initial-content-box">
-                    <div id="platform-metrics-initial-content-box-title">
-                        Delivery times
-                    </div>
-                    <div id="platform-metrics-initial-content-box-content">
-                        <div v-for="post of posts">
-                            <p>{{post.operationalMetrics.deliveryTimes}}</p>
-                        </div>
-
-                    </div>
-                </div>
+            <keep-alive>
+                <component :is="component" 
+                name="Delivery times"/>
+        
+            </keep-alive>   
+                 
             </div>
             <div id="platform-metrics-initial-content-box-wrapper">
-                <div id="platform-metrics-initial-content-box">
-                    <div id="platform-metrics-initial-content-box-title">
-                         Carrying costs
-                    </div>
-                    <div id="platform-metrics-initial-content-box-content">
-                        <div v-for="post of posts">
-                            <p>{{post.operationalMetrics.carryingCosts}}</p>
-                        </div>
-
-                    </div>
-                </div>
+                <keep-alive>
+                    <component :is="component" 
+                    name="Carrying costs"
+                    />
+                </keep-alive>   
+                       
             </div>
         </div>
         <div id="platform-metrics-initial-content-row">
             <div id="platform-metrics-initial-content-box-wrapper">
-                <div id="platform-metrics-initial-content-box">
-                    <div id="platform-metrics-initial-content-box-title">
-                        Average Time for Order Completion
-                    </div>
-                    <div id="platform-metrics-initial-content-box-content">
-                        <div v-for="post of posts">
-                            <p>{{post.operationalMetrics.avgTimeOrderCompletion}}</p>
-                        </div>
-
-                    </div>
-
-                </div>
+                <keep-alive>
+                    <component :is="component" 
+                    name="Average Time for Order Completion"
+                    />
+                </keep-alive>   
+                
             </div>
             <div id="platform-metrics-initial-content-box-wrapper">
-                <div id="platform-metrics-initial-content-box">
-                    <div id="platform-metrics-initial-content-box-title">
-                        Percent Correct Auto-Filled Fields
-                    </div>
-                    <div id="platform-metrics-initial-content-box-content">
-                        <div v-for="post of posts">
-                            <p>{{post.operationalMetrics.percentCorrectAFFields}}</p>
-                        </div>
-
-                    </div>
-
-                </div>
+                <keep-alive>
+                    <component :is="component" 
+                    name="Percent Correct Auto-Filled Fields"
+                    />
+                </keep-alive>   
+                           
              </div>
              <div id="platform-metrics-initial-content-box-wrapper">
-                <div id="platform-metrics-initial-content-box">
-                    <div id="platform-metrics-initial-content-box-title">
-                        Amount Critical Issues
-                    </div>
-                    <div id="platform-metrics-initial-content-box-content">
-                        <div v-for="post of posts">
-                            <p>{{post.operationalMetrics.numberCriticalIssues}}</p>
-                        </div>
-                       
-
-                    </div>
-
-                </div>
+                <keep-alive>
+                    <component :is="component" 
+                    name="Amount Critical Issues"
+                    />
+                </keep-alive>  
+                      
              </div>
        </div>
    </div>
@@ -114,12 +63,14 @@
     import { Bar } from 'vue-chartjs/legacy'
 
     import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import OperationalMetricsContentBox from "./OperationalMetricsContentBox/OperationalMetricsContentBox.vue";
 
     ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
     
     export default {
         name: 'BarChart',
-            components: { Bar },
+            components: {  
+                'OMCB-Component' : OperationalMetricsContentBox },
             props: {
                 chartId: {
                 type: String,
@@ -162,7 +113,8 @@
                 },
                 chartOptions: {
                     responsive: true
-                }
+                },
+                component : 'OMCB-Component'
            };
        },
        // Pulls posts when the component is created.
@@ -206,49 +158,6 @@
         align-items: center;
     }
 
-    #platform-metrics-initial-content-box{
-        height: 90%;
-        width: 90%;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        background-color: rgb(201, 191, 191);
-    }
-
-    #platform-metrics-initial-content-box-title{
-       height: 15%;
-       width: 95%;
-       display: flex;
-       padding-left: 5%;
-       align-items: center;
-       font-size: 1.1vw;
-       text-transform: uppercase;
-       font-weight: 500;
-       font-family: Roboto,sans-serif;
-       color: grey;
-    }
-
-    #platform-metrics-initial-content-box-content{
-        height: 85%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #platform-metrics-initial-content-json{
-        height: 10%;
-        width: 100%;
-        font-size: 0.8vw;
-        display: flex;
-        
-    }
-
-    #platform-metrics-initial-content-graph{
-        height: 90%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+ 
 
 </style>
