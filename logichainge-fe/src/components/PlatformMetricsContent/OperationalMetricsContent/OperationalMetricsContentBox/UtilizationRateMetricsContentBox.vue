@@ -10,21 +10,24 @@
                         <p>{{post.operationalMetrics.utilizationRate}}</p>
                     </div>
                     
-                    <div id="platform-metrics-initial-content-graph">
-                        <keep-alive>
-                            <Bar
-                                    :chart-options="chartOptions"
-                                    :chart-data="chartData"
-                                    :chart-id="chartId"
-                                    :dataset-id-key="datasetIdKey"
-                                    :plugins="plugins"
-                                    :css-classes="cssClasses"
-                                    :styles="styles"
-                                    :width="width"
-                                    :height="height"
-                                />
-                        </keep-alive>
-                    </div>
+                    
+                            <div id="platform-metrics-initial-content-graph">
+                                <keep-alive>
+                                    <Bar
+                                
+                                            :chart-options="chartOptions"
+                                            :chart-data="chartData"
+                                            :chart-id="chartId"
+                                            :dataset-id-key="datasetIdKey"
+                                            :plugins="plugins"
+                                            :css-classes="cssClasses"
+                                            :styles="styles"
+                                            :width="width"
+                                            :height="height"
+                                        />
+                                </keep-alive>
+                            </div>
+                
         </div>
     </div>
 </template>
@@ -74,15 +77,24 @@ import axios from "axios";
                 default: () => {}
                 }
             },
+       
+       emits: ['chart:updated'],
        data() {
            return {
                posts: [],
                errors: [],
                chartData: {
-                    labels: [ ],
+                    labels: [
+                    'January', 
+                    'February', 
+                    'March', 
+                    'April', 
+                    'May', 
+                    'June'  ],
                     datasets: [ {
                         label : 'Utilization Rate',
-                        data: [36, 20 , 12] } ]
+                        backgroundColor: '	#E9967A	',
+                        data: [36, 35 , 34, 32, 35, 30] } ]
                 },
                 chartOptions: {
                     responsive: true
@@ -95,16 +107,20 @@ import axios from "axios";
                .get(`http://127.0.0.1:8000/platformMetrics`)
                .then((response) => {
                this.posts = response.data;
-               this.chartData.labels=[ '2020', '2024', '2022' ];
+            //    this.chartData.labels=[ '2020', '2024', '2022' ];
            
            })
                .catch((e) => {
                this.errors.push(e);
            });
-       }
+       },
+        computed: {
+            
+            }
        ,
-        async mounted(){
-          this.created()
+         mounted(){
+            const ctx = document.getElementById('platform-metrics-initial-content-graph');
+            new ChartJS(ctx, this.planetChartData);
        }
     };
 

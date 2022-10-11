@@ -2,32 +2,17 @@
     <div id="client-metrics-secondary-content">
         <div id="client-metrics-secondary-content-row">
                     <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
-                                Active Carriers
-                            </div>
-                            <div id="client-metrics-secondary-content-box-content">
-    
-                                <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.numActiveCarriers}}</p>
-                                </div>
-                          
-                            </div>
-                        </div>
+                        <keep-alive>
+                            <ActiveCarriersContentBox
+                            name="Active Carriers"
+                            />
+                        </keep-alive>
                     </div>
                     <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
-                                Top 10 Carriers
-                            </div>
-                            <div id="client-metrics-secondary-content-box-content">
-    
-                                <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.top10Carriers}}</p>
-                                </div>
-                          
-                            </div>
-                        </div>
+                        <keep-alive>
+                            <TopTenCarriersContentBox
+                            name="Top 10 Carriers"/>
+                        </keep-alive>
                     </div>
 
         </div>
@@ -47,18 +32,11 @@
                         </div>
                     </div>
                     <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
-                                Carriers Satisfaction Rate
-                            </div>
-                            <div id="client-metrics-secondary-content-box-content">
-    
-                                <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.satisfactionRate}}</p>
-                                </div>
-                          
-                            </div>
-                        </div>
+                        <keep-alive>
+                            <CarriersSatisfactionRateContentBox
+                            name="Average carriers satsifaction rate"
+                            />
+                        </keep-alive>
                     </div>
 
                 </div>
@@ -72,27 +50,31 @@
 <script>
 
 import axios from "axios";
+import ActiveCarriersContentBox from "./CarriersMetricsContentBox/ActiveCarriersContentBox.vue";
+import TopTenCarriersContentBox from "./CarriersMetricsContentBox/TopTenCarriersContentBox.vue";
+import CarriersSatisfactionRateContentBox from "./CarriersMetricsContentBox/CarriersSatisfactionRateContentBox.vue";
 
 export default {
-   data() {
-       return {
-           posts: [],
-           errors: [],
-       };
-   },
-   // Pulls posts when the component is created.
-   created() {
-       axios
-           .get(`http://127.0.0.1:8000/platformMetrics`)
-           .then((response) => {
-           // JSON responses are automatically parsed.
-           this.posts = response.data;
-           // console.log(response.data)
-       })
-           .catch((e) => {
-           this.errors.push(e);
-       });
-   }
+    data() {
+        return {
+            posts: [],
+            errors: [],
+        };
+    },
+    // Pulls posts when the component is created.
+    created() {
+        axios
+            .get(`http://127.0.0.1:8000/platformMetrics`)
+            .then((response) => {
+            // JSON responses are automatically parsed.
+            this.posts = response.data;
+            // console.log(response.data)
+        })
+            .catch((e) => {
+            this.errors.push(e);
+        });
+    },
+    components: { ActiveCarriersContentBox, TopTenCarriersContentBox, CarriersSatisfactionRateContentBox }
 };
 
 </script>

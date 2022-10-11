@@ -2,10 +2,11 @@
     <div id="platform-metrics-initial-content">
         <div id="platform-metrics-initial-content-row">
            <div id="platform-metrics-initial-content-box-wrapper">
+           
             <keep-alive>
-                <component :is="component" 
+                
+                <UtilizationRateMetricsContentBox
                 name="Utilization Rate"
-                :utilizationRate="posts"
                 />
 
         
@@ -14,7 +15,9 @@
            <div id="platform-metrics-initial-content-box-wrapper">
            
             <keep-alive>
-                <component :is="component" 
+                <!-- <component :is="component" 
+                name="Delivery times"/> -->
+                <DeliveryTimeMetricsContentBox
                 name="Delivery times"/>
         
             </keep-alive>   
@@ -22,9 +25,13 @@
             </div>
             <div id="platform-metrics-initial-content-box-wrapper">
                 <keep-alive>
-                    <component :is="component" 
+                    <!-- <component :is="component" 
                     name="Carrying costs"
-                    />
+                    /> -->
+                    <!-- <CarryingCostsMetricsContentBox
+                    name="Carrying costs"/> -->
+                    <CarryingCostsMetricsContentBox
+                    name="Carrying costs"/>/>
                 </keep-alive>   
                        
             </div>
@@ -32,15 +39,20 @@
         <div id="platform-metrics-initial-content-row">
             <div id="platform-metrics-initial-content-box-wrapper">
                 <keep-alive>
-                    <component :is="component" 
+                    <!-- <component :is="component" 
                     name="Average Time for Order Completion"
-                    />
+                    /> -->
+                    <AverageTimeOrderCompletionContentBox
+                    name="Average Time for Order Completion"/>
                 </keep-alive>   
                 
             </div>
             <div id="platform-metrics-initial-content-box-wrapper">
                 <keep-alive>
-                    <component :is="component" 
+                    <!-- <component :is="component" 
+                    name="Percent Correct Auto-Filled Fields"
+                    /> -->
+                    <PercentAFFContentBox
                     name="Percent Correct Auto-Filled Fields"
                     />
                 </keep-alive>   
@@ -48,7 +60,10 @@
              </div>
              <div id="platform-metrics-initial-content-box-wrapper">
                 <keep-alive>
-                    <component :is="component" 
+                    <!-- <component :is="component" 
+                    name="Amount Critical Issues"
+                    /> -->
+                    <CriticalIssuesContentBox
                     name="Amount Critical Issues"
                     />
                 </keep-alive>  
@@ -60,61 +75,69 @@
 
 <script>
     import axios from "axios";
-    import { Bar } from 'vue-chartjs/legacy'
+   
 
-    import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import OperationalMetricsContentBox from "./OperationalMetricsContentBox/OperationalMetricsContentBox.vue";
+ import UtilizationRateMetricsContentBox from "./OperationalMetricsContentBox/UtilizationRateMetricsContentBox.vue";
+ import DeliveryTimeMetricsContentBox from "./OperationalMetricsContentBox/DeliveryTimeMetricsContentBox.vue";
+ import CarryingCostsMetricsContentBox from "./OperationalMetricsContentBox/CarryingCostsMetricsContentBox.vue";
+ import AverageTimeOrderCompletionContentBox from "./OperationalMetricsContentBox/AverageTimeOrderCompletionContentBox.vue";
+ import PercentAFFContentBox from "./OperationalMetricsContentBox/PercentAFFContentBox.vue";
+ import CriticalIssuesContentBox from "./OperationalMetricsContentBox/CriticalIssuesContentBox.vue";
 
-    ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+ export default {
+        
+            components: {
+    UtilizationRateMetricsContentBox,
+    DeliveryTimeMetricsContentBox,
+    CarryingCostsMetricsContentBox,
+    AverageTimeOrderCompletionContentBox,
+    PercentAFFContentBox,
+    CriticalIssuesContentBox
     
-    export default {
-        name: 'BarChart',
-            components: {  
-                'OMCB-Component' : OperationalMetricsContentBox },
+},
             props: {
-                chartId: {
-                type: String,
-                default: 'bar-chart'
-                },
-                datasetIdKey: {
-                type: String,
-                default: 'label'
-                },
-                width: {
-                type: Number,
-                default: 440
-                },
-                height: {
-                type: Number,
-                default: 200
-                },
-                cssClasses: {
-                default: '',
-                type: String
-                },
-                styles: {
-                type: Object,
-                default: () => {}
-                },
-                plugins: {
-                type: Object,
-                default: () => {}
-                }
+                // chartId: {
+                // type: String,
+                // default: 'bar-chart'
+                // },
+                // datasetIdKey: {
+                // type: String,
+                // default: 'label'
+                // },
+                // width: {
+                // type: Number,
+                // default: 440
+                // },
+                // height: {
+                // type: Number,
+                // default: 200
+                // },
+                // cssClasses: {
+                // default: '',
+                // type: String
+                // },
+                // styles: {
+                // type: Object,
+                // default: () => {}
+                // },
+                // plugins: {
+                // type: Object,
+                // default: () => {}
+                // }
             },
        data() {
            return {
                posts: [],
                errors: [],
-               chartData: {
-                    labels: [ '2020', '2021', '2022' ],
-                    datasets: [ {
-                        label : 'Utilization Rate',
-                        data: [36, 20, 12] } ]
-                },
-                chartOptions: {
-                    responsive: true
-                },
-                component : 'OMCB-Component'
+            //    chartData: {
+            //         labels: [ '2020', '2021', '2022' ],
+            //         datasets: [ {
+            //             label : 'Utilization Rate',
+            //             data: [36, 20, 12] } ]
+            //     },
+            //     chartOptions: {
+            //         responsive: true
+            //     }
            };
        },
        // Pulls posts when the component is created.

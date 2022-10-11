@@ -2,32 +2,18 @@
     <div id="client-metrics-initial-content">
         <div id="client-metrics-initial-content-row">
                     <div id="client-metrics-initial-content-box-wrapper">
-                        <div id="client-metrics-initial-content-box">
-                            <div id="client-metrics-initial-content-box-title">
-                                Sales Revenue
-                            </div>
-                            <div id="client-metrics-initial-content-box-content">
-    
-                                <div v-for="post of posts">
-                                    <p>{{post.managementMetics.salesRevenue}}</p>
-                                </div>
-                          
-                            </div>
-                        </div>
+                        <keep-alive>
+                            <RevenueMetricsContentBox
+                            name="Sales Revenue"
+                            />
+                        </keep-alive>
                     </div>
                     <div id="client-metrics-initial-content-box-wrapper">
-                        <div id="client-metrics-initial-content-box">
-                            <div id="client-metrics-initial-content-box-title">
-                                Gross Profit Margin
-                            </div>
-                            <div id="client-metrics-initial-content-box-content">
-    
-                                <div v-for="post of posts">
-                                    <p>{{post.managementMetics.grossProfitMargin}}</p>
-                                </div>
-                          
-                            </div>
-                        </div>
+                       <keep-alive>
+                         <GrossProfitMargingContentBox
+                         name="Gross Profit Margin"
+                         />
+                       </keep-alive>
                     </div>
 
         </div>
@@ -72,27 +58,30 @@
 <script>
 
 import axios from "axios";
+import RevenueMetricsContentBox from "./ManagementMetricsContent/RevenueMetricsContentBox.vue";
+import GrossProfitMargingContentBox from "./ManagementMetricsContent/GrossProfitMargingContentBox.vue";
 
 export default {
-   data() {
-       return {
-           posts: [],
-           errors: [],
-       };
-   },
-   // Pulls posts when the component is created.
-   created() {
-       axios
-           .get(`http://127.0.0.1:8000/clientMetrics`)
-           .then((response) => {
-           // JSON responses are automatically parsed.
-           this.posts = response.data;
-           // console.log(response.data)
-       })
-           .catch((e) => {
-           this.errors.push(e);
-       });
-   }
+    data() {
+        return {
+            posts: [],
+            errors: [],
+        };
+    },
+    // Pulls posts when the component is created.
+    created() {
+        axios
+            .get(`http://127.0.0.1:8000/clientMetrics`)
+            .then((response) => {
+            // JSON responses are automatically parsed.
+            this.posts = response.data;
+            // console.log(response.data)
+        })
+            .catch((e) => {
+            this.errors.push(e);
+        });
+    },
+    components: { RevenueMetricsContentBox, GrossProfitMargingContentBox }
 };
 
 </script>
