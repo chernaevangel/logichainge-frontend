@@ -132,6 +132,7 @@
         text-decoration: none;
         text-transform: uppercase;
         font-family: Roboto,sans-serif;
+        
     }
 
     #LG-metrics-box-wrapper:hover{
@@ -146,7 +147,7 @@
        display: flex;
        font-size: .875rem;
        font-weight: 600;
-       justify-content: flex-start;
+       justify-content: center;
        letter-spacing: .04em;
        line-height: normal;
        min-width: 90px;
@@ -158,6 +159,7 @@
        text-decoration: none;
        text-transform: uppercase;
        font-family: Roboto,sans-serif;
+      
    }
 
    #C-metrics-box-wrapper:hover{
@@ -205,9 +207,9 @@
         height: 100%;
         width: 100%;
         display: flex;
-        background-color: rgb(216, 216, 216);
+        background-color: rgb(231, 231, 231);
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     }
-
 
     
   

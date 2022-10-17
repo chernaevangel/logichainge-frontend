@@ -12,20 +12,9 @@
                     
                     
                             <div id="platform-metrics-initial-content-graph">
-                                <keep-alive>
-                                    <Bar
+                               
+                                <GChart :type="type" :data="data" :options="options" />
                                 
-                                            :chart-options="chartOptions"
-                                            :chart-data="chartData"
-                                            :chart-id="chartId"
-                                            :dataset-id-key="datasetIdKey"
-                                            :plugins="plugins"
-                                            :css-classes="cssClasses"
-                                            :styles="styles"
-                                            :width="width"
-                                            :height="height"
-                                        />
-                                </keep-alive>
                             </div>
                 
         </div>
@@ -35,94 +24,46 @@
 <script>
 
 import axios from "axios";
-    import { Bar } from 'vue-chartjs/legacy'
+   
+import { GChart } from 'vue-google-charts/legacy';
 
-    import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
-    
-    ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
- 
-    export default {
-        name: 'BarChart',
-            components: { Bar },
-            props: {
-                name: String,
-                utilizationRate: Array,
-                chartId: {
-                type: String,
-                default: 'bar-chart'
+export default {
+  name: 'GoogleChart',
+  components: {
+    GChart,
+  },
+  data() {
+    return {
+      type: 'BarChart',
+      data: [
+        ['City', '2021 Metrics'],
+        ['January', 8175000],
+        ['February', 3792000],
+        ['March', 2695000],
+        ['April', 2099000],
+        ['May', 1526000],
+        ['June', 1522000],
+        ],
+        
+      options: {
+                title: 'Utilization Rate',
+                chartArea: { width: '50%' },
+                hAxis: {
+                    title: "Value",
+                    minValue: 0,
                 },
-                datasetIdKey: {
-                type: String,
-                default: 'label'
+                bars: 'horizontal',
+                vAxis: {
+                    title: 'Month',
                 },
-                width: {
-                type: Number,
-                default: 440
+                width: 420,
+                height: 250,
+                colors: ['#1b9e77']
                 },
-                height: {
-                type: Number,
-                default: 200
-                },
-                cssClasses: {
-                default: '',
-                type: String
-                },
-                styles: {
-                type: Object,
-                default: () => {}
-                },
-                plugins: {
-                type: Object,
-                default: () => {}
-                }
-            },
-       
-       emits: ['chart:updated'],
-       data() {
-           return {
-               posts: [],
-               errors: [],
-               chartData: {
-                    labels: [
-                    'January', 
-                    'February', 
-                    'March', 
-                    'April', 
-                    'May', 
-                    'June'  ],
-                    datasets: [ {
-                        label : 'Utilization Rate',
-                        backgroundColor: '	#E9967A	',
-                        data: [36, 35 , 34, 32, 35, 30] } ]
-                },
-                chartOptions: {
-                    responsive: true
-                }
-           };
-       },
-       // Pulls posts when the component is created.
-       created() {
-           axios
-               .get(`http://127.0.0.1:8000/platformMetrics`)
-               .then((response) => {
-               this.posts = response.data;
-            //    this.chartData.labels=[ '2020', '2024', '2022' ];
-           
-           })
-               .catch((e) => {
-               this.errors.push(e);
-           });
-       },
-        computed: {
-            
-            }
-       ,
-         mounted(){
-            const ctx = document.getElementById('platform-metrics-initial-content-graph');
-            new ChartJS(ctx, this.planetChartData);
-       }
     };
+  },
+};
 
 </script>
 
@@ -133,7 +74,7 @@ import axios from "axios";
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        background-color: rgb(201, 191, 191);
+       
     }
 
     #platform-metrics-initial-content-box-title{
@@ -146,7 +87,7 @@ import axios from "axios";
        text-transform: uppercase;
        font-weight: 500;
        font-family: Roboto,sans-serif;
-       color: grey;
+
     }
 
     #platform-metrics-initial-content-box-content{

@@ -20,28 +20,24 @@
                 <div id="client-metrics-initial-content-row">
                     <div id="client-metrics-initial-content-box-wrapper">
                         <div id="client-metrics-initial-content-box">
-                            <div id="client-metrics-initial-content-box-title">
-                                Retention Rate
-                            </div>
+                          
                             <div id="client-metrics-initial-content-box-content">
     
-                                <div v-for="post of posts">
-                                    <p>{{post.managementMetics.retentionRate}}</p>
-                                </div>
+                               <keep-alive>
+                                <RRContentBox/>
+                               </keep-alive>
                           
                             </div>
                         </div>
                     </div>
                     <div id="client-metrics-initial-content-box-wrapper">
                         <div id="client-metrics-initial-content-box">
-                            <div id="client-metrics-initial-content-box-title">
-                                Carriers Satisfaction Rate
-                            </div>
+                           
                             <div id="client-metrics-initial-content-box-content">
     
-                                <div v-for="post of posts">
-                                    <p>{{post.managementMetics.carriersSatisfactionRate}}</p>
-                                </div>
+                                <keep-alive>
+                                    <CSRContentBox/>
+                                </keep-alive>
                           
                             </div>
                         </div>
@@ -60,6 +56,8 @@
 import axios from "axios";
 import RevenueMetricsContentBox from "./ManagementMetricsContent/RevenueMetricsContentBox.vue";
 import GrossProfitMargingContentBox from "./ManagementMetricsContent/GrossProfitMargingContentBox.vue";
+import RRContentBox from "./ManagementMetricsContent/RRContentBox.vue";
+import CSRContentBox from "./ManagementMetricsContent/CSRContentBox.vue";
 
 export default {
     data() {
@@ -81,7 +79,7 @@ export default {
             this.errors.push(e);
         });
     },
-    components: { RevenueMetricsContentBox, GrossProfitMargingContentBox }
+    components: { RevenueMetricsContentBox, GrossProfitMargingContentBox, RRContentBox, CSRContentBox }
 };
 
 </script>

@@ -12,20 +12,7 @@
                     
                     
                             <div id="platform-metrics-initial-content-graph">
-                                <keep-alive>
-                                    <LineChartGenerator
-                                        :chart-options="chartOptions"
-                                        :chart-data="chartData"
-                                        :chart-id="chartId"
-                                        :dataset-id-key="datasetIdKey"
-                                        :plugins="plugins"
-                                        :css-classes="cssClasses"
-                                        :styles="styles"
-                                        :width="width"
-                                        :height="height"
-                                    />
-                                </keep-alive>
-                            </div>
+                                <GChart :type="type" :data="data" :options="options" />                            </div>
                 
         </div>
     </div>
@@ -33,116 +20,42 @@
 
 <script>
 
-    import axios from "axios";
-        import {  Line as LineChartGenerator } from 'vue-chartjs/legacy'
-    
-        import {
-            Chart as ChartJS,
-            Title,
-            Tooltip,
-            Legend,
-            LineElement,
-            LinearScale,
-            CategoryScale,
-            PointElement
-            } from 'chart.js'
-    
-        
-        ChartJS.register(Title,
-            Tooltip,
-            Legend,
-            LineElement,
-            LinearScale,
-            CategoryScale,
-            PointElement)
-     
-        export default {
-            name: 'LineChart',
-                components: {
-                LineChartGenerator
-            },
-                props: {
-                    name: String,
-                    utilizationRate: Array,
-                    chartId: {
-                    type: String,
-                    default: 'line-chart'
-                    },
-                    datasetIdKey: {
-                    type: String,
-                    default: 'label'
-                    },
-                    width: {
-                    type: Number,
-                    default: 440
-                    },
-                    height: {
-                    type: Number,
-                    default: 200
-                    },
-                    cssClasses: {
-                    default: '',
-                    type: String
-                    },
-                    styles: {
-                    type: Object,
-                    default: () => {}
-                    },
-                    plugins: {
-                    type: Array,
-                    default: () => {}
-                    }
-                },
+import axios from "axios";
+import { GChart } from 'vue-google-charts/legacy';
 
-           
-           emits: ['chart:updated'],
-           data() {
-               return {
-                   posts: [],
-                   errors: [],
-                   chartData: {
-                        labels: ['January',
-                            'February',
-                            'March',
-                            'April',
-                            'May',
-                            'June',
-                            'July'],
-                        datasets: [ {
-                                label: 'Carrying costs',
-                                backgroundColor: '#008000',
-                                data: [22000, 21000, 18000, 21000, 16000, 15000, 17000]
-                            } ]
-                    },
-                    chartOptions: {
-                        responsive: true,
-                         maintainAspectRatio: false
-                    }
-               };
-           },
-           // Pulls posts when the component is created.
-           created() {
-               axios
-                   .get(`http://127.0.0.1:8000/platformMetrics`)
-                   .then((response) => {
-                   this.posts = response.data;
-                //    this.chartData.labels=[ '2020', '2024', '2022' ];
-               
-               })
-                   .catch((e) => {
-                   this.errors.push(e);
-               });
-           },
-            computed: {
-                
-                }
-           ,
-             mounted(){
-                const ctx = document.getElementById('platform-metrics-initial-content-graph');
-                new ChartJS(ctx, this.planetChartData);
-           }
-        };
-    
+
+export default {
+  name: 'GoogleChart',
+  components: {
+    GChart,
+  },
+  data() {
+    return {
+      type: 'ComboChart',
+      data: [
+        [
+            'Month',
+            'Costs'
+        ],
+        ['January', 165],
+        ['February', 135],
+        ['March', 157],
+        ['April', 139],
+        ['May', 136],
+        ['June', 138]
+        ],
+      options: {
+            title: 'Carring Costs',
+            vAxis: { title: 'Value' },
+            hAxis: { title: 'Month' },
+            seriesType: 'bars',
+            series: { 5: { type: 'line' } },
+            width: 420,
+                height: 250,
+            },
+    };
+  },
+};
     </script>
     
     <style scoped>
@@ -152,7 +65,7 @@
             border-radius: 10px;
             display: flex;
             flex-direction: column;
-            background-color: rgb(201, 191, 191);
+            
         }
     
         #platform-metrics-initial-content-box-title{
@@ -165,7 +78,7 @@
            text-transform: uppercase;
            font-weight: 500;
            font-family: Roboto,sans-serif;
-           color: grey;
+         
         }
     
         #platform-metrics-initial-content-box-content{

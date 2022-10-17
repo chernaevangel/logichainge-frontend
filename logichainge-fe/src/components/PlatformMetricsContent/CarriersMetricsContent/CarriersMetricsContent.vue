@@ -19,14 +19,12 @@
                 <div id="client-metrics-secondary-content-row">
                     <div id="client-metrics-secondary-content-box-wrapper">
                         <div id="client-metrics-secondary-content-box">
-                            <div id="client-metrics-secondary-content-box-title">
-                                Retention Rate
-                            </div>
+                            
                             <div id="client-metrics-secondary-content-box-content">
     
-                                <div v-for="post of posts">
-                                    <p>{{post.carriersMetrics.retentionRate}}</p>
-                                </div>
+                               <keep-alive>
+                                <RetentionRateContentBox/>
+                               </keep-alive>
                           
                             </div>
                         </div>
@@ -53,6 +51,7 @@ import axios from "axios";
 import ActiveCarriersContentBox from "./CarriersMetricsContentBox/ActiveCarriersContentBox.vue";
 import TopTenCarriersContentBox from "./CarriersMetricsContentBox/TopTenCarriersContentBox.vue";
 import CarriersSatisfactionRateContentBox from "./CarriersMetricsContentBox/CarriersSatisfactionRateContentBox.vue";
+import RetentionRateContentBox from "./CarriersMetricsContentBox/RetentionRateContentBox.vue";
 
 export default {
     data() {
@@ -74,7 +73,7 @@ export default {
             this.errors.push(e);
         });
     },
-    components: { ActiveCarriersContentBox, TopTenCarriersContentBox, CarriersSatisfactionRateContentBox }
+    components: { ActiveCarriersContentBox, TopTenCarriersContentBox, CarriersSatisfactionRateContentBox, RetentionRateContentBox }
 };
 
 </script>
