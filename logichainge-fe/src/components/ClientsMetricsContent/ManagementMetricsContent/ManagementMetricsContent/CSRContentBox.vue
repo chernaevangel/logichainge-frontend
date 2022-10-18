@@ -1,8 +1,8 @@
 <template>
 
-    <div id="client-metrics-secondary-content-box">
+    <div id="platform-metrics-secondary-content-box">
        
-        <div id="client-metrics-secondary-content-box-content">
+        <div id="platform-metrics-secondary-content-box-content">
 
             <div v-for="post of posts">
                 <p>{{post.carriersMetrics.numActiveCarriers}}</p>

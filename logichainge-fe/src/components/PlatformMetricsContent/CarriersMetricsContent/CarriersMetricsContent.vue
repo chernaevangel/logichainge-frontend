@@ -1,14 +1,14 @@
 <template>
-    <div id="client-metrics-secondary-content">
-        <div id="client-metrics-secondary-content-row">
-                    <div id="client-metrics-secondary-content-box-wrapper">
+    <div id="platform-metrics-secondary-content">
+        <div id="platform-metrics-secondary-content-row">
+                    <div id="platform-metrics-secondary-content-box-wrapper">
                         <keep-alive>
                             <ActiveCarriersContentBox
                             name="Active Carriers"
                             />
                         </keep-alive>
                     </div>
-                    <div id="client-metrics-secondary-content-box-wrapper">
+                    <div id="platform-metrics-secondary-content-box-wrapper">
                         <keep-alive>
                             <TopTenCarriersContentBox
                             name="Top 10 Carriers"/>
@@ -16,20 +16,20 @@
                     </div>
 
         </div>
-                <div id="client-metrics-secondary-content-row">
-                    <div id="client-metrics-secondary-content-box-wrapper">
-                        <div id="client-metrics-secondary-content-box">
+                <div id="platform-metrics-secondary-content-row">
+                    <div id="platform-metrics-secondary-content-box-wrapper">
+                        <div id="platform-metrics-secondary-content-box">
                             
-                            <div id="client-metrics-secondary-content-box-content">
+                           
     
                                <keep-alive>
                                 <RetentionRateContentBox/>
                                </keep-alive>
                           
-                            </div>
+                           
                         </div>
                     </div>
-                    <div id="client-metrics-secondary-content-box-wrapper">
+                    <div id="platform-metrics-secondary-content-box-wrapper">
                         <keep-alive>
                             <CarriersSatisfactionRateContentBox
                             name="Average carriers satsifaction rate"
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-    #client-metrics-secondary-content{
+    #platform-metrics-secondary-content{
         height: 88%;
         width: 100%;
         display: flex;
@@ -87,45 +87,34 @@ export default {
 
     }
 
-    #client-metrics-secondary-content-row{
+    #platform-metrics-secondary-content-row{
         height: 50%;
         width: 100%;
         display: flex;
-       
+
     }
 
-    #client-metrics-secondary-content-box-wrapper{
+    #platform-metrics-secondary-content-box-wrapper{
         height: 100%;
         width: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-   
     }
 
-    #client-metrics-secondary-content-box{
+    #platform-metrics-secondary-content-box{
         height: 90%;
         width: 85%;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        background-color: rgb(201, 191, 191);
-    }
-
-    #client-metrics-secondary-content-box-title{
-        height: 15%;
-        width: 95%;
-        display: flex;
-        padding-left: 5%;
+        justify-content: center;
         align-items: center;
-        font-size: 1.1vw;
-        text-transform: uppercase;
-        font-weight: 500;
-        font-family: Roboto,sans-serif;
-        color: grey;
     }
 
-    #client-metrics-secondary-content-box-content{
+   
+
+    #platform-metrics-secondary-content-box-content{
         height: 85%;
         width: 100%;
     }

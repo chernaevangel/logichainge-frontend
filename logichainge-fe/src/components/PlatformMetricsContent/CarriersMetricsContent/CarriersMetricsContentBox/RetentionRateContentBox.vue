@@ -1,17 +1,11 @@
 <template>
-    <div id="platform-metrics-initial-content-box">
+    <div id="platform-metrics-secondary-content-box">
     
-        <div id="platform-metrics-initial-content-box-content">
-             
-                    <div id="platform-metrics-initial-content-json"
-                     v-for="post of utilizationRate">
-                        <!-- <p>{{post.operationalMetrics.utilizationRate}}</p> -->
+        <div id="platform-metrics-secondary-content-box-content">
+                 
+                   <div id="platform-metrics-initial-content-graph">
+                                    <GChart :type="type" :data="data" :options="options" />
                     </div>
-                    
-                    
-                            <div id="platform-metrics-initial-content-graph">
-                                <GChart :type="type" :data="data" :options="options" />
-                            </div>
                 
         </div>
     </div>

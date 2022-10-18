@@ -19,28 +19,22 @@
         </div>
                 <div id="client-metrics-initial-content-row">
                     <div id="client-metrics-initial-content-box-wrapper">
-                        <div id="client-metrics-initial-content-box">
-                          
-                            <div id="client-metrics-initial-content-box-content">
+                       
     
                                <keep-alive>
                                 <RRContentBox/>
                                </keep-alive>
                           
-                            </div>
-                        </div>
+                           
                     </div>
                     <div id="client-metrics-initial-content-box-wrapper">
-                        <div id="client-metrics-initial-content-box">
-                           
-                            <div id="client-metrics-initial-content-box-content">
+                    
     
                                 <keep-alive>
                                     <CSRContentBox/>
                                 </keep-alive>
                           
-                            </div>
-                        </div>
+                           
                     </div>
 
                 </div>
@@ -115,7 +109,8 @@ export default {
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        background-color: rgb(201, 191, 191);
+       justify-content: center;
+       align-items: center;
     }
 
     #client-metrics-initial-content-box-title{

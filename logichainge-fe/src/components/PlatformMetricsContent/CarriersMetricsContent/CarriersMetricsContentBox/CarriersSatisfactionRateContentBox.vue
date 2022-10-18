@@ -1,13 +1,13 @@
 <template>
 
-    <div id="client-metrics-secondary-content-box">
+    <div id="platform-metrics-secondary-content-box">
        
-        <div id="client-metrics-secondary-content-box-content">
+        <div id="platform-metrics-secondary-content-box-content">
 
             <div v-for="post of posts">
                 <p>{{post.carriersMetrics.numActiveCarriers}}</p>
             </div>
-            <div id="platform-metrics-initial-content-graph">
+            <div id="platform-metrics-secondary-content-graph">
                 <GChart :type="type" :data="data" :options="options" />
             </div>
       
@@ -54,12 +54,16 @@ export default {
     </script>
     
     <style scoped>
+
+
         #client-metrics-secondary-content-box{
             height: 90%;
             width: 85%;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
            
         }
     

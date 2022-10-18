@@ -1,16 +1,14 @@
 <template>
 
     <div id="platform-metrics-secondary-content-box">
-        <!-- <div id="client-metrics-secondary-content-box-title">
-            {{name}}
-        </div> -->
+     
         <div id="platform-metrics-secondary-content-box-content">
 
             <div v-for="post of posts">
                 <!-- <p>{{post.carriersMetrics.numActiveCarriers}}</p> -->
             </div>
     
-            <div id="platform-metrics-initial-content-graph">
+            <div id="platform-metrics-secondary-content-graph">
               <GChart :type="type" :data="data" :options="options" 
               />
 

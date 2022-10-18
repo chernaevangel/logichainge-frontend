@@ -64,15 +64,11 @@
                 </div>
                 <div id="platform-metrics-content-export-wrapper">
                         <div
-                        v-if="component==='OMC-Component'"
+                      
                         id="platform-metrics-content-export-button">
                             export
                         </div>
-                        <div
-                        v-if="component==='CMC-Component'"
-                        id="platform-metrics-content-export-button">
-                            laina
-                        </div>
+                        
                 </div>
 
              </div>
