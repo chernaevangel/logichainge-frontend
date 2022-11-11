@@ -84,14 +84,14 @@ export default {
         width: 100%;
         display: flex;
         flex-direction: column;
-
+      
     }
 
     #platform-metrics-secondary-content-row{
         height: 50%;
         width: 100%;
         display: flex;
-
+       
     }
 
     #platform-metrics-secondary-content-box-wrapper{
@@ -100,6 +100,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+  
     }
 
     #platform-metrics-secondary-content-box{

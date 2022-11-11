@@ -18,8 +18,14 @@
                         >
 
                         </div>
+                        <div id="SMC-Component-hidden-indicator"
+                        v-if="component==='AMC-Component'"
+                        >
+
+                        </div>
                        
                     </div>
+                    
                     <div id="platform-metrics-content-switcher-SMC"
                     v-on:click="component = 'SMC-Component'"
                     >   
@@ -36,8 +42,38 @@
                         >
 
                         </div>
+                        <div id="SMC-Component-hidden-indicator"
+                        v-if="component==='AMC-Component'"
+                        >
+
+                        </div>
                        
                     </div>
+                    
+                    <div id="platform-metrics-content-switcher-AMC"
+                    v-on:click="component = 'AMC-Component'"
+                    >   
+                        <div id="AMC-Component-title">
+                            Advanced Metrics
+                        </div>
+                        <div id="AMC-Component-indicator"
+                        v-if="component==='AMC-Component'"
+                        >
+
+                        </div>
+                        <div id="AMC-Component-hidden-indicator"
+                        v-if="component==='SMC-Component'"
+                        >
+
+                        </div>
+                        <div id="AMC-Component-hidden-indicator"
+                        v-if="component==='MMC-Component'"
+                        >
+
+                        </div>
+                       
+                    </div>
+                    
               </div>
             <div id="platform-metrics-content-filter-wrapper">
                 <div id="platform-metrics-content-filter-divider">
@@ -79,7 +115,7 @@
 <script>
 import ManagementMetricsContent from "./ManagementMetricsContent/ManagementMetricsContent.vue";
 import ShipmentsMetricsContent from "./ShipmentsMetricsContent/ShipmentsMetricsContent.vue";
-
+import AdvancedMetricsContent from "./AdvancedMetricsContent/AdvancedMetricsContent.vue";
 
 export default {
     data() {
@@ -95,7 +131,8 @@ export default {
     },
     components : { 
          'MMC-Component':ManagementMetricsContent,
-         'SMC-Component':ShipmentsMetricsContent
+         'SMC-Component':ShipmentsMetricsContent,
+         'AMC-Component':AdvancedMetricsContent
          }
 };
 
@@ -114,12 +151,11 @@ export default {
         height: 12%;
         width: 100%;
         display: flex;
-        
     }
 
     #client-metrics-content-switcher-wrapper{
         height: 100%;
-        width: 30%;
+        width: 45%;
         display: flex;
         flex-direction: row;
     }
@@ -169,6 +205,40 @@ export default {
         border-radius: 10px;
     }
 
+
+
+    #AMC-Component-title{
+        height: 95%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+       
+    }
+
+    #AMC-Component-title{
+        height: 95%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+       
+    }
+
+    #AMC-Component-indicator{
+        height: 5%;
+        width: 92%;
+        border-radius: 10px;
+        background-color: #1e2b50 ;
+    }
+
+    #AMC-Component-hidden-indicator{
+        height: 5%;
+        width: 92%;
+        border-radius: 10px;
+    }
+
+
     #SMC-Component-indicator{
         height: 5%;
         width: 92%;
@@ -199,6 +269,23 @@ export default {
         align-items: center;
     }
 
+    #platform-metrics-content-switcher-AMC{
+        height: 100%;
+        width: 47%;
+        cursor: pointer;
+        display: flex;
+        font-size: 0.96 vw;
+        font-weight: 600;
+        text-transform: uppercase;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #platform-metrics-content-switcher-AMC:hover{
+        opacity: 0.8;
+    }
+
     #platform-metrics-content-switcher-SMC:hover{
         opacity: 0.8;
     }
@@ -212,8 +299,7 @@ export default {
 
     #platform-metrics-content-filter-divider{
         height: 100%;
-        width: 35%;
-       
+        width: 20%;
     }
 
     #platform-metrics-content-filter-sorter-wrapper{

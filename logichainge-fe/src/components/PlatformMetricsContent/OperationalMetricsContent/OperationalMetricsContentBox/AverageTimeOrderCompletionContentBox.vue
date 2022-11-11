@@ -46,8 +46,8 @@ export default {
             title: 'Average Time For Order Completion ',
             curveType: 'function',
             legend: { position: 'bottom' },
-            width: 420,
-                height: 250,
+            width: 620,
+            height: 250,
             colors: ['#1b9e77']
             },
     };

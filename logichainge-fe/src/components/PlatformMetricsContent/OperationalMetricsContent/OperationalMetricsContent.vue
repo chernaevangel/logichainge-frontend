@@ -6,47 +6,25 @@
             <keep-alive>
                 
                 <UtilizationRateMetricsContentBox
-                name="Utilization Rate"
+                name="Workload Saved"
                 />
 
         
             </keep-alive>   
-           </div>
+           </div>    
            <div id="platform-metrics-initial-content-box-wrapper">
-           
             <keep-alive>
                 <!-- <component :is="component" 
-                name="Delivery times"/> -->
-                <DeliveryTimeMetricsContentBox
-                name="Delivery times"/>
-        
+                name="Average Time for Order Completion"
+                /> -->
+                <AverageTimeOrderCompletionContentBox
+                name="Average Time for Order Completion"/>
             </keep-alive>   
-                 
-            </div>
-            <div id="platform-metrics-initial-content-box-wrapper">
-                <keep-alive>
-                    <!-- <component :is="component" 
-                    name="Carrying costs"
-                    /> -->
-                    <!-- <CarryingCostsMetricsContentBox
-                    name="Carrying costs"/> -->
-                    <CarryingCostsMetricsContentBox
-                    name="Carrying costs"/>/>
-                </keep-alive>   
-                       
-            </div>
+            
+        </div>  
         </div>
         <div id="platform-metrics-initial-content-row">
-            <div id="platform-metrics-initial-content-box-wrapper">
-                <keep-alive>
-                    <!-- <component :is="component" 
-                    name="Average Time for Order Completion"
-                    /> -->
-                    <AverageTimeOrderCompletionContentBox
-                    name="Average Time for Order Completion"/>
-                </keep-alive>   
-                
-            </div>
+           
             <div id="platform-metrics-initial-content-box-wrapper">
                 <keep-alive>
                     <!-- <component :is="component" 
@@ -78,8 +56,6 @@
    
 
  import UtilizationRateMetricsContentBox from "./OperationalMetricsContentBox/UtilizationRateMetricsContentBox.vue";
- import DeliveryTimeMetricsContentBox from "./OperationalMetricsContentBox/DeliveryTimeMetricsContentBox.vue";
- import CarryingCostsMetricsContentBox from "./OperationalMetricsContentBox/CarryingCostsMetricsContentBox.vue";
  import AverageTimeOrderCompletionContentBox from "./OperationalMetricsContentBox/AverageTimeOrderCompletionContentBox.vue";
  import PercentAFFContentBox from "./OperationalMetricsContentBox/PercentAFFContentBox.vue";
  import CriticalIssuesContentBox from "./OperationalMetricsContentBox/CriticalIssuesContentBox.vue";
@@ -88,8 +64,6 @@
         
             components: {
     UtilizationRateMetricsContentBox,
-    DeliveryTimeMetricsContentBox,
-    CarryingCostsMetricsContentBox,
     AverageTimeOrderCompletionContentBox,
     PercentAFFContentBox,
     CriticalIssuesContentBox
@@ -165,20 +139,23 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        
     }
 
     #platform-metrics-initial-content-row{
         height: 50%;
         width: 100%;
         display: flex;
+       
     }
 
     #platform-metrics-initial-content-box-wrapper{
         height: 100%;
-        width: 33.33%;
+        width: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
 
  

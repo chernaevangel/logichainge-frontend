@@ -46,13 +46,13 @@ export default {
         ['June', 8]
         ],
       options: {
-            title: 'Critical Issues',
+            title: 'Manual Input Cases',
             vAxis: { title: 'Value' },
             hAxis: { title: 'Month' },
             seriesType: 'bars',
             series: { 5: { type: 'line' } },
-            width: 420,
-                height: 250,
+            width: 620,
+            height: 250,
                 colors: ['#1b9e77']
             },
     };

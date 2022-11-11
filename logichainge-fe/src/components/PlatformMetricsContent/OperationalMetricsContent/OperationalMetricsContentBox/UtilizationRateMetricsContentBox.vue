@@ -47,7 +47,7 @@ export default {
         ],
         
       options: {
-                title: 'Utilization Rate',
+                title: 'Workload Saved',
                 chartArea: { width: '50%' },
                 hAxis: {
                     title: "Value",
@@ -57,8 +57,8 @@ export default {
                 vAxis: {
                     title: 'Month',
                 },
-                width: 420,
-                height: 250,
+                width: 620,
+            height: 250,
                 colors: ['#1b9e77']
                 },
     };
